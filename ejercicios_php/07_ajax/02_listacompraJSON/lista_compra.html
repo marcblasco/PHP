@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de la Compra</title>
+    <script>
+        function cargar_lista() {
+            var xhttp  = new XMLHttpRequest();
+    
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState === 4 && xhttp.status === 200) {
+                    let elemento = document.getElementById("lista_compra");
+                    let datos = JSON.parse(this.responseText);
+                    elemento.innerHTML = "<ul>";
+                    datos.forEach(function(compra) {
+                        elemento.innerHTML += "<li>Compra: " + compra.titulo + "</li>";
+                    });
+                    elemento.innerHTML += "</ul>";
+                }
+            };
+    
+            xhttp.open("GET", "listado.php", true);
+            xhttp.send();
+        }
+    </script>
+    
+</head>
+<body>
+<button onclick="cargar_lista()">Cargar lista</button>
+<div id="lista_compra">
+
+</div>
+</body>
+</html>
