@@ -1,0 +1,7 @@
+Hotel Meliá;Alicante;4
+Hotel Costa Narejos;Murcia;3
+Hotel Bali;Alicante;4
+Hotel carmen;Alicante;1
+hotel loli;Alicante;5
+hotel2;Sevilla;1
+hotel3;Sevilla;4
