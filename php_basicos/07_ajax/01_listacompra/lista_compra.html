@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de la Compra</title>
+    <script>
+        function cargar_lista(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {                
+                let elemento = document.getElementById("lista_compra");
+                elemento.innerHTML = this.responseText;
+            }
+        }
+        xhttp.open("GET", "listado.php", true);
+        xhttp.send();
+        }
+    </script>
+</head>
+<body>
+<button onclick="cargar_lista()">Cargar lista</button>
+<div id="lista_compra">
+
+</div>
+</body>
+</html>
