@@ -4,9 +4,9 @@ $_SESSION = array();
 session_start();
 include('conexion.inc');
 
-if (isset($_GET['codigo_inmueble']) || ) {
+//if (isset($_GET['codigo_inmueble'])) {
     $codigo_inmueble = $_GET['codigo_inmueble'];
-}
+//}
 
 $sql = "SELECT * FROM inmuebles WHERE codigo = :codigo";
 $consulta = $pdo->prepare($sql);

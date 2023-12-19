@@ -18,8 +18,18 @@
         $localidad = $_POST['localidad'];
         $descripcion = $_POST['descripcion'];
     
-        $insercion = $pdo->prepare("INSERT INTO inmuebles(codigo, titulo, imagen, categoria, precio, habitaciones, localidad, descripcion)" .
-        " VALUES (:codigo, :titulo, :imagen, :categoria, :precio, :habitaciones, :localidad, :descripcion)");
+        $consulta = $pdo->prepare("SELECT * FROM inmuebles WHERE codigo = :codigo");
+        $consulta->bindParam(':codigo', $codigo);
+        $consulta->execute();
+        $registro = $consulta->fetch();
+
+        if ($registro) {
+            $actualizacion = $pdo->prepare("UPDATE inmuebles SET titulo = :titulo, imagen = :imagen, categoria = :categoria, precio = :precio, habitaciones = :habitaciones, localidad = :localidad, descripcion = :descripcion WHERE codigo = :codigo");
+            $mensaje_exito = "Actualización realizada correctamente";
+        } else {
+            $actualizacion = $pdo->prepare("INSERT INTO inmuebles(codigo, titulo, imagen, categoria, precio, habitaciones, localidad, descripcion) VALUES (:codigo, :titulo, :imagen, :categoria, :precio, :habitaciones, :localidad, :descripcion)");
+            $mensaje_exito = "Inserción realizada correctamente";
+        }
     
         $insercion->bindParam(':codigo', $codigo);
         $insercion->bindParam(':titulo', $titulo);
