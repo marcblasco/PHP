@@ -74,7 +74,7 @@
                 echo '<p>' . $row['categoria'] . '</p>';
                 echo '<p>' . $row['habitaciones'] . ' habitaciones - ' . $row['precio'] . ' eur</p>';
                 echo '<a href="index.php?codigo_inmueble=' . $row['codigo'] . '" class="btn-add-favoritos">Añadir a favoritos</a>';
-                echo '<a href="buscar.php?codigo_borrar=' . $row['codigo'] . '" class="btn-add-favoritos">Borrar</a>';
+                echo '<a href="buscar.php?codigo_borrar=' . $row['codigo'] . '" class="btn-add-favoritos">Eliminar</a>';
                 echo '</section>';
             }
             echo '</section>';
