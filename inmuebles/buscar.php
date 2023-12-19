@@ -32,15 +32,28 @@
         </form>
         <?php
             include('conexion.inc');         
+            if (isset($_GET['codigo_borrar'])) {
+                $codigo_borrar = $_GET['codigo_borrar'];
+                $sql = "DELETE FROM inmuebles WHERE codigo = :codigo";
+                $consulta = $pdo->prepare($sql);
+                $consulta->bindParam(':codigo', $codigo_borrar);
+                if ($consulta->execute()) {
+                    echo "El inmueble ha sido borrado.";
+                } else {
+                    echo "Error al borrar el inmueble.";
+                }
+            }
             $sql = "SELECT * FROM inmuebles";
             $consulta = $pdo->query($sql);
             foreach ($consulta as $fila) {
                 $inmueblesArray[] = [
                     'codigo' => trim($fila['codigo']),
                     'titulo' => trim($fila['titulo']),
+                    'imagen' => trim($fila['imagen']),
                     'habitaciones' => (int)trim($fila['habitaciones']),
                     'precio' => (float)trim($fila['precio']),
                     'categoria' => trim($fila['categoria'])
+
                 ];
             }
         
@@ -57,14 +70,19 @@
             foreach ($inmueblesFiltrados as $row) {
                 echo '<section class="inmueble">';
                 echo '<h4>' . $row['titulo'] . '</h4>';
+                echo '<img src="' . $row['imagen'] . '" alt="Imagen del inmueble">';
                 echo '<p>' . $row['categoria'] . '</p>';
                 echo '<p>' . $row['habitaciones'] . ' habitaciones - ' . $row['precio'] . ' eur</p>';
                 echo '<a href="index.php?codigo_inmueble=' . $row['codigo'] . '" class="btn-add-favoritos">Añadir a favoritos</a>';
+                echo '<a href="buscar.php?codigo_borrar=' . $row['codigo'] . '" class="btn-add-favoritos">Borrar</a>';
                 echo '</section>';
             }
             echo '</section>';
 
+            
+
             ?>
+</script>
     </section>
 </body>
 </html>

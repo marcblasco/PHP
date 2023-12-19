@@ -4,7 +4,7 @@ $_SESSION = array();
 session_start();
 include('conexion.inc');
 
-if (isset($_GET['codigo_inmueble'])) {
+if (isset($_GET['codigo_inmueble']) || ) {
     $codigo_inmueble = $_GET['codigo_inmueble'];
 }
 
